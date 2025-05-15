@@ -1,0 +1,16 @@
+6)indexing
+
+db.customers.insertMany([
+  { name: "Alice", age: 25, city: "New York" },
+  { name: "Bob", age: 30, city: "London" },
+  { name: "Charlie", age: 35, city: "Paris" }
+])
+
+db.customers.createIndex({ age: 1 })
+
+db.customers.find({ age: { $gt: 25 } }).explain("executionStats")
+
+db.customers.getIndexes()
+
+db.customers.dropIndex({ age: 1 })
+
