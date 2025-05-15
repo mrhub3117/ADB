@@ -1,0 +1,15 @@
+7)capped collections:
+db.createCollection("logs", { capped: true, size: 10000, max: 5 })
+db.logs.insertMany([
+  { event: "Login", user: "Alice", timestamp: new Date() },
+  { event: "Logout", user: "Bob", timestamp: new Date() },
+  { event: "File Upload", user: "Charlie", timestamp: new Date() },
+  { event: "Data Update", user: "Alice", timestamp: new Date() },
+  { event: "Password Change", user: "Bob", timestamp: new Date() }
+])
+
+db.logs.find()
+
+db.logs.find().sort({ $natural: -1 })
+
+db.logs.isCapped()
