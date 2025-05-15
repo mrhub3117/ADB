@@ -1,0 +1,19 @@
+//note:please use correct db
+
+CREATE:
+db.collection.insertOne({ name: "Sam", age: 25, city: "New York" })
+db.collection.insertMany([
+  { name: "Bob", age: 30, city: "London" },
+  { name: "Charlie", age: 35, city: "Paris" }
+])
+READ:
+db.collection.find()
+db.collection.find({ age: { $gt: 25 } })
+
+UPDATE:
+db.collection.updateMany({ city: "London" }, { $set: { country: "UK" } })
+db.collection.updateMany({ city: "London" }, { $set: { country: "UK" } })
+
+DELETE:
+db.collection.deleteOne({ name: "Alice" })
+db.collection.deleteMany({ city: "Paris" })
