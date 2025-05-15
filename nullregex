@@ -1,0 +1,30 @@
+db.customers.insertMany([
+...   {
+...     name: "Ram",
+...     age: 23,
+...     role: ["developer", "designer"],
+...     contact: [
+...       { type: "email", value: "ram@example.com" },
+...       { type: "phone", value: "+91-9876543210" }
+...     ]
+...   },
+...   {
+...     name: "Jessy",
+...     age: null,
+...     role: ["developer", "designer"],
+...     contact: [
+...       { type: "email", value: "jessy@example.com" },
+...       { type: "phone", value: "+91-9876543211" }
+...     ]
+...   }
+... ])
+
+null op:
+db.collections.find({age:null})
+db.collections.find({age:{$ne:null}})
+
+Regex:
+db.collections.find({name:{$regex:"^R",$options:"i"}})
+
+ARRAY:
+db.colllections.find({"contact.type":"email"})
