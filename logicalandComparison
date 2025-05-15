@@ -1,0 +1,16 @@
+3.LOGICAL AND COMPARISON OPERATORS
+
+db.customers.insertMany([
+  { name: "Alice", age: 30, status: "Active" },
+  { name: "Bob", age: 22, status: "Inactive" },
+  { name: "Charlie", age: 35, status: "Active" },
+  { name: "David", age: 28, status: "Inactive" }
+])
+
+
+queries:
+db.customers.find({ age: { $gt: 25 } })
+db.customers.find({ age: { $ne: 30 } })
+db.customers.find({ $or: [{ status: "Active" }, { age: { $gt: 30 } }] })
+db.customers.find({ $and: [{ status: "Active" }, { age: { $gt: 25 } }] })
+db.customers.find({ age: { $not: { $gt: 25 } } })
