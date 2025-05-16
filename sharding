@@ -1,0 +1,9 @@
+mongod --configsvr --replSet configReplSet --port 27019 --dbpath /data/configdb
+mongod --shardsvr --replSet shardReplSet1 --port 27018 --dbpath /data/shard1
+mongod --shardsvr --replSet shardReplSet2 --port 27020 --dbpath /data/shard2
+mongos --configdb configReplSet/localhost:27019 --port 27017
+mongosh --port 27017
+sh.enableSharding("myDatabase")
+sh.shardCollection("myDatabase.myCollection", { shardKey: 1 })
+sh.status()
+db.myCollection.getShardDistribution()
