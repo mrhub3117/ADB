@@ -19,3 +19,11 @@ db.places.find({
     }
   }
 })
+db.places.find({
+  location: {
+    $geoWithin: {
+      $centerSphere: [[77.6000, 12.9760], 1000 / 6378100]
+    }
+  }
+})
+
