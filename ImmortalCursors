@@ -1,0 +1,16 @@
+db.logs.insertMany([
+  { event: "Login", user: "Alice", timestamp: new Date() },
+  { event: "Logout", user: "Bob", timestamp: new Date() },
+  { event: "Purchase", user: "Charlie", timestamp: new Date() },
+  { event: "Login", user: "David", timestamp: new Date() }
+])
+
+var cursor = db.logs.find().noCursorTimeout();
+
+while (cursor.hasNext()) {
+    printjson(cursor.next());
+}
+
+cursor.close();
+
+db.logs.find().maxTimeMS(5000)
