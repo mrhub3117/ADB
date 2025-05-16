@@ -1,0 +1,14 @@
+db.sales.insertMany([
+  { product: "Laptop", amount: 1200 },
+  { product: "Phone", amount: 800 },
+  { product: "Laptop", amount: 1500 },
+  { product: "Phone", amount: 900 }
+])
+
+
+var result = db.sales.mapReduce(
+  function() { emit(this.product, this.amount); }, 
+  function(key, values) { return Array.sum(values); }, 
+  { out: "total_sales" }
+);
+printjson(result)
