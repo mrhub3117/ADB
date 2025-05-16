@@ -1,0 +1,16 @@
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
+
+public class MongoDBConnection {
+    public static void main(String[] args) {
+        String connectionString = "mongodb://localhost:27017"; // MongoDB URL
+
+        try (MongoClient mongoClient = MongoClients.create(connectionString)) {
+            MongoDatabase database = mongoClient.getDatabase("myDatabase"); // Connect to database
+            System.out.println("Connected to MongoDB successfully!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
