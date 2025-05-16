@@ -1,0 +1,21 @@
+db.sales.insertMany([
+  { product: "Laptop", category: "Electronics", amount: 1200, status: "completed" },
+  { product: "Phone", category: "Electronics", amount: 800, status: "completed" },
+  { product: "Tablet", category: "Electronics", amount: 500, status: "pending" },
+  { product: "Headphones", category: "Accessories", amount: 200, status: "completed" },
+  { product: "Smartwatch", category: "Accessories", amount: 300, status: "completed" }
+])
+
+
+
+db.sales.aggregate([
+  { $match: { status: "completed" } },  // Filter only completed sales
+  { $group: { _id: "$category", totalSales: { $sum: "$amount" } } },  // Group by category and sum sales
+  { $sort: { totalSales: -1 } }  // Sort by total sales in descending order
+])
+
+db.sales.aggregate([
+  { $group: { _id: "$category", avgPrice: { $avg: "$amount" } } },
+  { $sort: { avgPrice: -1 } }
+])
+
