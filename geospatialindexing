@@ -1,0 +1,21 @@
+8.GEOSPATIAL INDEXING
+
+db.places.find({
+  location: {
+    $near: {
+      $geometry: { type: "Point", coordinates: [77.6000, 12.9760] },
+      $maxDistance: 1000
+    }
+  }
+})
+
+db.places.createIndex({ location: "2dsphere" })
+
+db.places.find({
+  location: {
+    $near: {
+      $geometry: { type: "Point", coordinates: [77.6000, 12.9760] },
+      $maxDistance: 1000
+    }
+  }
+})
