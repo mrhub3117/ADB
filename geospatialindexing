@@ -1,5 +1,10 @@
 8.GEOSPATIAL INDEXING
 
+db.places.insertMany([
+  { name: "Park", location: { type: "Point", coordinates: [77.5946, 12.9716] } },
+  { name: "Mall", location: { type: "Point", coordinates: [77.5986, 12.9756] } },
+  { name: "Cafe", location: { type: "Point", coordinates: [77.6016, 12.9786] } }
+])
 db.places.find({
   location: {
     $near: {
