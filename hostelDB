@@ -1,0 +1,32 @@
+use hostelDB
+
+db.createCollection("students")
+db.createCollection("rooms")
+db.createCollection("payments")
+
+
+db.students.insertMany([
+  { _id: 1, name: "Alice", age: 20, room: 101 },
+  { _id: 2, name: "Bob", age: 22, room: 102 }
+])
+
+db.rooms.insertMany([
+  { room_no: 101, type: "Single", status: "Occupied" },
+  { room_no: 102, type: "Double", status: "Available" }
+])
+
+db.payments.insertMany([
+  { student_id: 1, amount: 5000, status: "Paid" },
+  { student_id: 2, amount: 4500, status: "Pending" }
+])
+
+db.students.find()
+db.rooms.find({ status: "Available" })
+db.rooms.updateOne({ room_no: 102 }, { $set: { status: "Occupied" } })
+db.rooms.updateOne({ room_no: 102 }, { $set: { status: "Occupied" } })
+db.payments.find({ status: "Pending" })
+db.students.deleteOne({ _id: 2 })
+var py = db.payments.aggregate([
+  { $group: { _id: "$status", totalAmount: { $sum: "$amount" } } }
+])  printjson(py)
+
